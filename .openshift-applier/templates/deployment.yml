@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Template
 labels:
-  template: spring-rest-secure
+  template: spring-rest-secure-template
 metadata:
   annotations:
     description: Application template for JWS applications built using a Jenkins Pipeline
