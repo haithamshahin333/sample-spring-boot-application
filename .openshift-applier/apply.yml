@@ -12,7 +12,7 @@
     build:
       APPLICATION_NAME: "{{app_name}}"
       NAMESPACE: "{{ci_cd_namespace}}"
-      SOURCE_REPOSITORY_URL: https://github.com/haithamshahin333/base-openshift-applier.git
+      SOURCE_REPOSITORY_URL: https://github.com/haithamshahin333/sample-spring-boot-application.git
       SOURCE_REPOSITORY_REF: master
       CONTEXT_DIR:
       PIPELINE_SCRIPT: Jenkinsfile
