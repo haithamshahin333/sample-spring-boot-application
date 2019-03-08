@@ -2,10 +2,35 @@
 - name: Deploy Spring Boot Application
   hosts: seed-hosts
   vars:
-    application_name: test-sample-spring-boot-rest-app
+    app_name: test-sample-spring-boot-rest-app
     ci_cd_namespace: puckboard-hs-ci-cd
     dev_namespace: puckboard-hs-dev
     test_namespace: puckboard-hs-test
+    readiness_response: {"status":"UP"}
+    readiness_path: /actuator/health
+    build:
+      APPLICATION_NAME: "{{app_name}}"
+      NAMESPACE: "{{ci_cd_namespace}}"
+      SOURCE_REPOSITORY_URL: https://github.com/haithamshahin333/base-openshift-applier.git
+      SOURCE_REPOSITORY_REF: master
+      CONTEXT_DIR:
+      PIPELINE_SCRIPT: Jenkinsfile
+    dev:
+      APPLICATION_NAME: "{{app_name}}"
+      NAMESPACE: "{{dev_namespace}}"
+      SA_NAME: jenkins
+      SA_NAMESPACE: "{{ci_cd_namespace}}"
+      READINESS_PORT: 8081
+      READINESS_RESPONSE: "{{readiness_response}}"
+      READINESS_PATH: "{{readiness_path}}"
+    test:
+      APPLICATION_NAME: "{{app_name}}"
+      NAMESPACE: "{{dev_namespace}}"
+      SA_NAME: jenkins
+      SA_NAMESPACE: "{{ci_cd_namespace}}"
+      READINESS_PORT: 8081
+      READINESS_RESPONSE: "{{readiness_response}}"
+      READINESS_PATH: "{{readiness_path}}"
   tasks:
     - include_role:
         name: openshift-applier/roles/openshift-applier

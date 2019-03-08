@@ -4,19 +4,26 @@ openshift_cluster_content:
   content:
   - name: "create application build pipeline"
     template: "{{ inventory_dir }}/../templates/build.yml"
-    params: "{{ inventory_dir }}/../params/build"
+    params_from_vars: "{{ build }}"
+    namespace: "{{ ci_cd_namespace }}"
     tags:
       - build
-- object: deployments
+- object: dev-deployments
   content:
   - name: "deploy application to dev environment"
     template: "{{ inventory_dir }}/../templates/deployment.yml"
-    params: "{{ inventory_dir }}/../params/dev"
+    params_from_vars: "{{ dev }}"
+    namespace: "{{ dev_namespace }}"
     tags:
       - deployment
+      - dev-deployments
+- object: test-deployments
+  content:
   - name: "deploy application to test environment"
     template: "{{ inventory_dir }}/../templates/deployment.yml"
-    params: "{{ inventory_dir }}/../params/test"
+    params_from_vars: "{{ test }}"
+    namespace: "{{ test_namespace }}"
     tags:
       - deployment
+      - test-deployments
 
