@@ -1,0 +1,22 @@
+---
+openshift_cluster_content:
+- object: builds
+  content:
+  - name: "create application build pipeline"
+    template: "{{ inventory_dir }}/../templates/build.yml"
+    params: "{{ inventory_dir }}/../params/build"
+    tags:
+      - build
+- object: deployments
+  content:
+  - name: "deploy application to dev environment"
+    template: "{{ inventory_dir }}/../templates/deployment.yml"
+    params: "{{ inventory_dir }}/../params/dev"
+    tags:
+      - deployment
+  - name: "deploy application to test environment"
+    template: "{{ inventory_dir }}/../templates/deployment.yml"
+    params: "{{ inventory_dir }}/../params/test"
+    tags:
+      - deployment
+
