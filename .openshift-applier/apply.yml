@@ -7,7 +7,7 @@
     dev_namespace: puckboard-hs-dev
     test_namespace: puckboard-hs-test
     readiness_port: 8081
-    readiness_response: {"status":"UP"}
+    readiness_response: '{"status":"UP"}'
     readiness_path: /actuator/health
     build:
       APPLICATION_NAME: "{{app_name}}"
