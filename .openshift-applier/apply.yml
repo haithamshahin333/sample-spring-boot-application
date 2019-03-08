@@ -6,6 +6,7 @@
     ci_cd_namespace: puckboard-hs-ci-cd
     dev_namespace: puckboard-hs-dev
     test_namespace: puckboard-hs-test
+    readiness_port: 8081
     readiness_response: {"status":"UP"}
     readiness_path: /actuator/health
     build:
@@ -20,15 +21,15 @@
       NAMESPACE: "{{dev_namespace}}"
       SA_NAME: jenkins
       SA_NAMESPACE: "{{ci_cd_namespace}}"
-      READINESS_PORT: 8081
+      READINESS_PORT: "{{readiness_port}}"
       READINESS_RESPONSE: "{{readiness_response}}"
       READINESS_PATH: "{{readiness_path}}"
     test:
       APPLICATION_NAME: "{{app_name}}"
-      NAMESPACE: "{{dev_namespace}}"
+      NAMESPACE: "{{test_namespace}}"
       SA_NAME: jenkins
       SA_NAMESPACE: "{{ci_cd_namespace}}"
-      READINESS_PORT: 8081
+      READINESS_PORT: "{{readiness_port}}"
       READINESS_RESPONSE: "{{readiness_response}}"
       READINESS_PATH: "{{readiness_path}}"
   tasks:
